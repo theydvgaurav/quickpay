@@ -1,0 +1,2 @@
+class RazorpayPaymentInitiateRequestSerializer():
+    pass

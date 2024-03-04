@@ -1,0 +1,70 @@
+# virtualenv
+venv
+.venv
+
+# vim.gitignore
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+
+# OSX ignores
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+## Pycharm IDE
+.idea/
+.idea_modules/
+# User-specific stuff:
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/experchat.iml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+
+# Sensitive or high-churn files:
+.idea/dataSources/
+.idea/dataSources.ids
+.idea/dataSources.xml
+.idea/dataSources.local.xml
+.idea/sqlDataSources.xml
+.idea/dynamic.xml
+.idea/uiDesigner.xml
+
+# Gradle:
+.idea/gradle.xml
+.idea/libraries
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+.pytest_cache/
+*.py[cod]
+
+# IntelliJ
+/out/
+
+# remove env files from commit
+env/*
+
+.ipynb_checkpoints
+
+*.env
+.vscode/launch.json
+.vscode/settings.json
+/.mypy_cache/
+*.pem
+
+# Mongo Explorer plugin:
+.idea/mongoSettings.xml
+
+#remove google service json file
+google_service_account*.json
