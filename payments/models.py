@@ -13,6 +13,6 @@ class Transaction(ApplicationBaseModel):
     payment_id = models.CharField(max_length=255, unique=True, null=True)
     group_id = models.CharField(max_length=255, unique=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='transactions')
-    status = EnumField(TransactionStatus, max_length=64, protected=True, default=TransactionStatus.CREATED)
+    status = EnumField(TransactionStatus, max_length=64, default=TransactionStatus.CREATED)
     amount = models.DecimalField(max_digits=12, decimal_places=2, null=True)
     currency = EnumField(Currency)

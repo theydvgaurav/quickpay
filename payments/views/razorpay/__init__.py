@@ -1,4 +1,5 @@
-import razorpay
-from django.conf import settings
+import os
 
-RAZORPAY_CLIENT = razorpay.Client(auth=(settings.RAZORPAY_API_KEY, settings.RAZORPAY_API_SECRET))
+import razorpay
+
+RAZORPAY_CLIENT = razorpay.Client(auth=(os.getenv('RAZORPAY_API_KEY'), os.getenv('RAZORPAY_API_SECRET')))

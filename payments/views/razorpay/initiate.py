@@ -1,6 +1,7 @@
 import logging
 
 from base.views import ApplicationBaseAPIView
+from middlewares.quickpay_user import QuickPayUserAuthentication
 from payments.models import Transaction
 from . import RAZORPAY_CLIENT
 from ...enums import Currency
@@ -9,8 +10,10 @@ logger = logging.getLogger(__name__)
 
 
 class RazorpayTransactionInitiationView(ApplicationBaseAPIView):
+    authentication_classes = [QuickPayUserAuthentication]
+
     def post(self, request, *args, **kwargs):
-        amount = 1000
+        amount = request.data.get('amount')
 
         transaction = Transaction(
             user=self.request.user,
@@ -21,7 +24,7 @@ class RazorpayTransactionInitiationView(ApplicationBaseAPIView):
         try:
             order = RAZORPAY_CLIENT.order.create(data={
                 'amount': int(transaction.amount * 100),
-                'currency': Currency.INR,
+                'currency': Currency.INR.value,
                 'receipt': str(transaction.transaction_id),
                 'payment_capture': 1,
                 'notes': {}

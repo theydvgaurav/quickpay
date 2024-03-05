@@ -7,6 +7,7 @@ from rest_framework.decorators import action
 
 from base.views import ApplicationBaseViewSet
 from exceptions import APIException
+from middlewares.quickpay_user import QuickPayUserAuthentication
 from users.models import User
 from users.serializer import RegisterUserSerializer, LoginUserSerializer
 from utils.generate_jwt import generate_access_refresh_token, decode_jwt
@@ -17,6 +18,7 @@ class UserViewSet(ApplicationBaseViewSet):
         'register': RegisterUserSerializer,
         'login': LoginUserSerializer
     }
+    authentication_classes = [QuickPayUserAuthentication]
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -80,3 +82,8 @@ class UserViewSet(ApplicationBaseViewSet):
             "accessToken": access_token,
             "accessTokenExp": int(access_token_exp)
         })
+
+    @action(methods=['GET'], detail=False)
+    def me(self, request, *args, **kwargs):
+        return self.get_response(
+            data={"userId": request.user.user_id, "name": request.user.name, "email": request.user.email})
